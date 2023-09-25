@@ -9,14 +9,14 @@ public class Commands {
 
     public static void Run()
     {
-        JdbcLibraryRepository libraryCommandController = new JdbcLibraryRepository();
         Scanner in = new Scanner(System.in);
         System.out.print("Input command: ");
         String command = in.nextLine();
         if(command.contains("add"))
         {
             Library library = new Library("123","Library",true);
-            libraryCommandController.findAll();
+            JdbcLibraryRepository bd = new JdbcLibraryRepository();
+            bd.save(library);
 
         }
         else if (command.contains("create"))
