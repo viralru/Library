@@ -14,10 +14,11 @@ public class JdbcLibraryRepository implements LibraryRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     @Override
     public int save(Library library) {
-        return jdbcTemplate.update("INSERT INTO libraries (title, description, published) VALUES(?,?,?)",
-                new Object[] { library.getTitle(), library.getDescription(), library.isPublished() });
+        return jdbcTemplate.update("INSERT INTO libraries (id, title, description) VALUES(?,?,?)",
+                new Object[] { library.getId(), library.getTitle(), library.getDescription() });
     }
 
     @Override

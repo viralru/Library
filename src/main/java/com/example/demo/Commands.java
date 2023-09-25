@@ -3,25 +3,33 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Component
 
 public class Commands {
 
-    public static void Run()
+
+    private final JdbcLibraryRepository jdbcLibraryRepository;
+    public Commands(JdbcLibraryRepository jdbcLibraryRepository){
+        this.jdbcLibraryRepository = jdbcLibraryRepository;
+    }
+    public void run()
     {
         Scanner in = new Scanner(System.in);
         System.out.print("Input command: ");
         String command = in.nextLine();
         if(command.contains("add"))
         {
-            Library library = new Library("123","Library",true);
-            JdbcLibraryRepository bd = new JdbcLibraryRepository();
-            bd.save(library);
-
+            Library library = new Library("1","2",true);
+            jdbcLibraryRepository.save(library);
         }
         else if (command.contains("create"))
         {
-            System.out.println("lol");
+
         }
         else if (command.contains("delete"))
         {
